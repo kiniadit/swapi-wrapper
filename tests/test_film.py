@@ -11,15 +11,15 @@ def test_film_get(film_data):
     film = Film.get(1)
     assert isinstance(film, Film)
 
-    assert film.name == 'A New Hope'
+    assert film.title == 'A New Hope'
 
 
 @responses.activate
-def test_person_get_returns_none_on_error():
+def test_film_get_returns_none_on_error():
     responses.add(responses.GET, make_url(
         Film.resource_url, '99'), status=404)
 
-    assert Person.get(99) is None
+    assert Film.get(99) is None
 
 def test_film_attributes(film):
     str_attributes = 'title opening_crawl director release_date url'
